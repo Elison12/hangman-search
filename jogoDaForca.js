@@ -73,7 +73,18 @@ while (lives > 0) {
                 multiples++;
             }
         }
-        
+        if (letterFound) {
+            console.log("Encontrei %s letras %s", multiples, playerChar);   
+        }
+        else{
+            console.log("Não tem letra %s !", playerChar);
+            lives--;
+        }
+        // console.log
+
+    }
+    else {
+        console.log("vc acertou a palavra %s!!", playerChar);
     }
 }
 
