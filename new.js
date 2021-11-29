@@ -48,7 +48,10 @@ while(lives > 0){
         indices.push(idx);
         idx = secWordArr.indexOf(playerGuess, idx + 1);
         }
-      var removed = secretArr.splice(2, 0, "drum")
+      for(var i = 0; i < indices.length; i++){
+        var posicao = indices[i]
+        var removed = secretArr.splice(posicao, 1, playerGuess)
+      }
         console.log(indices);
 
       lives = lives
