@@ -61,7 +61,18 @@ while (lives > 0) {
     playerGuess = playerGuess.toUpperCase();
     var  playerChar = String.fromCharCode(playerGuess)
 
-    if (guessed) {
+    if (guessedLatters.includes(playerChar) == false) {
+        guessedLatters[numberStore] = playerChar;
+        numberStore++
+
+        for (const letter in secretArray) {
+            counter++;
+            if (letter == playerChar) {
+                printArray[counter] =playerChar;
+                letterFound = true;
+                multiples++;
+            }
+        }
         
     }
 }
