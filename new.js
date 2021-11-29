@@ -25,6 +25,13 @@ var victory = new Boolean(false);
 
 while(lives > 0){
 
+  if(secWordArr.toString() == secretArr.toString()){
+      
+      console.log("Parabens voce ganhou!")
+      break
+
+    }else{
+
   console.log("atual: " + secretArr)
   console.log("advinhe uma letra: ");
 
@@ -33,13 +40,15 @@ while(lives > 0){
   var guessTest = new Boolean(/^[a-zA-Z]*$/.test(playerGuess));
 
   while (guessTest == false || playerGuess.length != 1) {
+
       console.log("Insira apenas uma letra!")
       playerGuess = prompt();
       guessTest = new Boolean(/^[a-zA-Z]*$/.test(playerGuess))
+      
     }
 
     playerGuess = playerGuess.toUpperCase();
-    
+
     if(secWordArr.includes(playerGuess)){
 
       var indices = [];
@@ -52,12 +61,20 @@ while(lives > 0){
         var posicao = indices[i]
         var removed = secretArr.splice(posicao, 1, playerGuess)
       }
-        console.log(indices);
 
       lives = lives
+
     }else{
+
       lives = lives-1
       console.log("Voce errou restam: " + lives + " vidas")
+
     }
+
+    }
+}
+if(lives == 0){
+
+  console.log("Voce perdeu!")
 
 }
