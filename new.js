@@ -18,10 +18,7 @@ var lives = 5;
 var counter = -1;
 var wordLenght = secWordArr.length;
 var secretArr = new Array(wordLenght).fill("_")
-console.log(secretArr)
-var guessedLatters  = [];
-var numberStore = 0;
-var victory = new Boolean(false);
+var armLet = new Array()
 
 while(lives > 0){
 
@@ -36,6 +33,14 @@ while(lives > 0){
   console.log("advinhe uma letra: ");
 
   let playerGuess = prompt();
+
+  playerGuess = playerGuess.toUpperCase()
+
+  if(armLet.includes(playerGuess)){
+
+    console.log("Voce ja utilizou essa palavra! Tente outra vez!")
+
+  }else{
 
   var guessTest = new Boolean(/^[a-zA-Z]*$/.test(playerGuess));
 
@@ -70,6 +75,10 @@ while(lives > 0){
       console.log("Voce errou restam: " + lives + " vidas")
 
     }
+
+    armLet.push(playerGuess)
+
+  }
 
     }
 }
