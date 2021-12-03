@@ -30,9 +30,9 @@ $("#enterWord #submit-word").on("click", function (e) {
 
 $(".alpha").on("click", function(e) {
     e.preventDefault();
-    console.log(e);
 });
 
+$(".alpha").children().on("click", letterTry);
 
 function valid(palavra) {
     var wordTest = new Boolean(/^[a-zA-Z]*$/.test(palavra));
@@ -43,18 +43,20 @@ function valid(palavra) {
         alert("A palavra não pode conter numeros !")
     } else {
         console.log();
-        playGame(palavra);
+        // playGame(palavra);
+        letterTry();
     }
+}
+
+function letterTry() {
+    var guess = $(this).attr('id');
+    console.log(guess);
 }
 
 function playGame(palavraSecreta) {
     // palavraSecreta = palavraSecreta.toUpperCase();
-    guess = $(this).attr('id');
-    var i = 5
-    while (i < 5) {
-        console.log(guess.value);
-    }
-
+    // var guess = $(this).attr('id');
+    // alert($(this).attr('id'));
     // var secWordArr = palavraSecreta.split("");
     // var lives = 5;
     // var wordLenght = secWordArr.length;
