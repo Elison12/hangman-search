@@ -1,6 +1,7 @@
 var word = $("#enterWord #word-field");
 var answerArray = [];
-var secretWord = "";
+secretWord = "";
+// secretWord = null;
 var guessArray = [];
 var wordLength = 0;
 
@@ -16,12 +17,19 @@ function getWord() {
     return secretWord;
 }
 
-
 $("#enterWord #submit-word").on("click", function (e) {
     e.preventDefault()
     Sword = getWord();
     //chama função que valida a palavra
-    valid(Sword);
+    // secretWord = Sword;
+    var teste = valid(Sword);
+
+    if (teste == false) {
+        window.location.reload(true);
+        alert("A palavra só pode conter letras !")
+    } else {
+        playGame(Sword);
+    }
     $("#enterWord #word-field").hide();
     $("#enterWord #submit-word").hide();
     $("#playerOne h2").hide();
@@ -36,7 +44,6 @@ $(".alpha").children().on("click", letterTry);
 
 
 window.addEventListener('keyup', validLetter);
-// window.addEventListener('keyup', playGame);
 
 
 function valid(palavra) {
@@ -44,113 +51,38 @@ function valid(palavra) {
 
     if (wordTest == false) {
         // Location.reload();
-        window.location.reload(true);
-        alert("A palavra não pode conter numeros !")
+        // window.location.reload(true);
+        // alert("A palavra só pode conter letras !")
+        return false;
     } else {
+        //chamar script do jogo
+        // armazem(palavra);
         // playGame(palavra);
-        // letterTry();
+        // console.log(palavra)
+        return true;
     }
 }
 
-function letterTry() {
-    var guess = $(this).attr('id');
-    console.log(guess);
-    return guess;
-}
+// function letterTry() {
+//     var guess = $(this).attr('id');
+//     console.log(guess);
+//     return guess;
+// }
 
 
 function validLetter(ev) {
     const letra = ev.key;
     if (ev.keyCode >= 65 && ev.keyCode <= 90) {
         // console.log(ev.keyCode);
-        console.log(letra);
+        var lives = 5;
+        var wordLenght = secWordArr.length;
+        var secretArr = new Array(wordLenght).fill("_")
+        var armLet = new Array();
+
+        if (secretWord.includes(letra)) {
+            
+        }        
         // return letra;
     }
+    // console.log(secretWord);
 }
-
-// function playGame(palavraSecreta, ev) {
-//     // palavraSecreta = palavraSecreta.toUpperCase();
-//     // var guess = $(this).attr('id');
-//     // alert($(this).attr('id'));
-
-//     const letra = ev.key;
-//     var secWordArr = palavraSecreta.split("");
-//     var lives = 5;
-//     var wordLenght = secWordArr.length;
-//     var secretArr = new Array(wordLenght).fill("_")
-//     var armLet = new Array();
-
-//     if (ev.keyCode >= 65 && ev.keyCode <= 90) {
-//         console.log(letra);
-//     }
-
-    // while (lives > 0) {
-
-    //     if (secWordArr.toString() == secretArr.toString()) {
-
-    //         console.log("Parabens voce ganhou!")
-    //         break
-
-    //     } else {
-
-    //         console.log("atual: " + secretArr)
-    //         console.log("advinhe uma letra: ");
-
-    //         // let playerGuess = prompt();
-    //         // let playerGuess = letterTry();
-    //         let playerGuess = validLetter();
-
-    //         // playerGuess = playerGuess.toUpperCase()
-    //         console.log(playerGuess);
-    //         if (armLet.includes(playerGuess)) {
-
-    //             console.log("Voce ja utilizou essa palavra! Tente outra vez!")
-
-    //         } else {
-
-    //             var guessTest = new Boolean(/^[a-zA-Z]*$/.test(playerGuess));
-
-    //             while (guessTest == false || playerGuess.length != 1) {
-
-    //                 console.log("Insira apenas uma letra!")
-    //                 playerGuess = prompt();
-    //                 guessTest = new Boolean(/^[a-zA-Z]*$/.test(playerGuess))
-
-    //             }
-
-    //             //   playerGuess = playerGuess.toUpperCase();
-
-    //             if (secWordArr.includes(playerGuess)) {
-
-    //                 var indices = [];
-    //                 var idx = secWordArr.indexOf(playerGuess);
-    //                 while (idx != -1) {
-    //                     indices.push(idx);
-    //                     idx = secWordArr.indexOf(playerGuess, idx + 1);
-    //                 }
-    //                 for (var i = 0; i < indices.length; i++) {
-    //                     var posicao = indices[i]
-    //                     var removed = secretArr.splice(posicao, 1, playerGuess)
-    //                 }
-
-    //                 lives = lives
-
-    //             } else {
-
-    //                 lives = lives - 1
-    //                 console.log("Voce errou restam: " + lives + " vidas")
-
-    //             }
-
-    //             armLet.push(playerGuess)
-
-    //         }
-
-    //     }
-    // }
-//     if (lives == 0) {
-
-//         console.log("Voce perdeu!")
-
-//     }
-// }
