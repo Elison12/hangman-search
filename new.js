@@ -4,6 +4,7 @@ secretWord = "";
 // secretWord = null;
 var guessArray = [];
 var wordLength = 0;
+var letters = ""
 
 
 function getWord() {
@@ -14,7 +15,7 @@ function getWord() {
         answerArray[i] = " _ ";
         $(".dashes div").append(answerArray[i]);
     }
-    return secretWord;
+    return secretWord, letters;
 }
 
 $("#enterWord #submit-word").on("click", function (e) {
@@ -23,6 +24,8 @@ $("#enterWord #submit-word").on("click", function (e) {
     //chama função que valida a palavra
     // secretWord = Sword;
     var teste = valid(Sword);
+
+    teste = true
 
     if (teste == false) {
         window.location.reload(true);
@@ -118,7 +121,7 @@ indices = []
 
 
 function validLetter(letter, ev) {
-    if (answerArray.join('') == secretWord) {
+    if (answerArray.toString() == letters.toString()) {
         console.log("parabéns, vc ganhou")
     }
     if (ev.keyCode >= 65 && ev.keyCode <= 90) {
@@ -127,17 +130,18 @@ function validLetter(letter, ev) {
         // var secretArr = new Array(wordLenght).fill("_")
         // var armLet = new Array();
 
-        if (secretWord.includes(letter)) {
+        if (letters.includes(letter)) {
             // console.log(true)
-            // var indices = []
-            var idx = secretWord.indexOf(letter);
+            var indices = []
+            var idx = letters.indexOf(letter);
             while (idx != -1) {
                 indices.push(idx);
-                idx = answerArray.indexOf(letter, idx + 1);
+                idx = letters.indexOf(letter, idx + 1);
             }
             for (var i = 0; i < indices.length; i++) {
                 var posicao = indices[i];
                 answerArray.splice(posicao, 1, letter);
+                document.getElementById("p1").innerHTML = answerArray
             }
             // $(".dashes div").append(answerArray[i]);
             lives = lives
