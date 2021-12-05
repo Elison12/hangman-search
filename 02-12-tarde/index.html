@@ -5,12 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+  <link rel="stylesheet" type="text/css" href=assets//styles/style.css>
   <link href="https://fonts.googleapis.com/css?family=Bangers|Covered+By+Your+Grace" rel="stylesheet">
   <title>Hangman!</title>
 </head>
 
 <body>
+  
   <h1>JOGO DA FORCA</h1>
 
 
@@ -19,57 +20,30 @@
     <div id="playerOne">
       <h2>Digite a palavra que seu amigo terá que advinhar!</h2>
       <form id="enterWord">
-        <input type="text" id="word-field" min="1" placeholder="Digite a palavra">
-        <button id="submit-word"> OK</button>
+        <input style= "margin: 5% 25% 25% 25%" type="text" id="word-field" min="1" placeholder="Digite a palavra">
+        <button  id="submit-word"> OK</button>
       </form>
     </div>
 
     <div id="hangman-counter">
-      <img src="assets\img\life5.png" alt="body part 1">
+      <img src="assets\img\life5.png" alt="body part 1" style="padding-top: 0px">
     </div>
 
     <div id="playerTwo">
 
       <h2>Digite para tentar advinhar a palavra</h2>
-      <!-- <div class="alpha">
-        <span id="a"><a href="#">A</a></span>
-        <span id="b"><a href="#">B</a></span>
-        <span id="c"><a href="#">C</a></span>
-        <span id="d"><a href="#">D</a></span>
-        <span id="e"><a href="#">E</a></span>
-        <span id="f"><a href="#">F</a></span>
-        <span id="g"><a href="#">G</a></span>
-        <span id="h"><a href="#">H</a></span>
-        <span id="i"><a href="#">I</a></span>
-        <span id="j"><a href="#">J</a></span>
-        <span id="k"><a href="#">K</a></span>
-        <span id="l"><a href="#">L</a></span>
-        <span id="m"><a href="#">M</a></span>
-        <span id="n"><a href="#">N</a></span>
-        <span id="o"><a href="#">O</a></span>
-        <span id="p"><a href="#">P</a></span>
-        <span id="q"><a href="#">Q</a></span>
-        <span id="r"><a href="#">R</a></span>
-        <span id="s"><a href="#">S</a></span>
-        <span id="t"><a href="#">T</a></span>
-        <span id="u"><a href="#">U</a></span>
-        <span id="v"><a href="#">V</a></span>
-        <span id="w"><a href="#">W</a></span>
-        <span id="x"><a href="#">X</a></span>
-        <span id="y"><a href="#">Y</a></span>
-        <span id="z"><a href="#">Z</a></span>
-      </div> -->
-
       <div class="dashes">
         <h2>Essa palavra tem <span>0</span> letras</h2>
         <div></div>
-        <p id="p1"></p>
+        <!-- <h4 id="p1"></h4> -->
       </div>
+      <h4 id="p1"></h4>
     </div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="assets/scripts/new.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </body>
 
 </html>

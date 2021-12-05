@@ -21,8 +21,6 @@ $("#enterWord #submit-word").on("click", function (e) {
     e.preventDefault()
     Sword = getWord();
     Sword = secretWord;
-    //chama função que valida a palavra
-    // secretWord = Sword;
     var teste = valid(Sword);
 
     if (teste == false) {
@@ -46,6 +44,10 @@ $(".alpha").children().on("click", letterTry);
 
 
 function valid(palavra) {
+    if (palavra.length == 0) {
+        alert('A palavra não pode ser nula')
+        window.location.reload(true);
+    }
     var wordTest = new Boolean(/^[a-zA-Z]*$/.test(palavra));
 
     if (wordTest == false) {
@@ -65,10 +67,8 @@ function letterTry() {
 function digitadas2(ev) {
     const l = ev.key;
     console.log(l)
-    // console.log(getWord());
-    // console.log(secretWord);
+
     validLetter(l, ev)
-    // return l;
 }
 
 lives = 5;
@@ -95,6 +95,11 @@ function validLetter(letter, ev) {
             lives = lives
             if (answerArray.toString() == letters.toString()) {
                 console.log("parabéns, vc ganhou")
+                fireSweetAlert();
+
+                setTimeout(() => {
+                    window.location.reload(true);
+                }, 5000);
             }
         } else {
             lives = lives - 1;
@@ -112,7 +117,7 @@ function validLetter(letter, ev) {
 function updateImage(lives) {
     if (lives == 4) {
         $("img").attr("src", "assets/img/life4.png");
-    } else if (lives == 3){
+    } else if (lives == 3) {
         $("img").attr("src", "assets/img/life3.png");
     } else if (lives == 2) {
         $("img").attr("src", "assets/img/life2.png");
@@ -120,5 +125,25 @@ function updateImage(lives) {
         $("img").attr("src", "assets/img/life1.png");
     } else {
         $("img").attr("src", "assets/img/lose.png");
+
+        setTimeout(() => {fireErrorAlert()}, 500);
+
+        setTimeout(() => {
+            window.location.reload(true);
+        }, 5000);
     }
+}
+
+function fireSweetAlert() {
+    Swal.fire(
+        'Ufaa',
+        'Você se salvou com a palavra: ' + secretWord
+    )
+}
+
+function fireErrorAlert() {
+    Swal.fire(
+        'Faleceu',
+        'A palavra era: ' + secretWord
+    )
 }
