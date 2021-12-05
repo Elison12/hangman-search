@@ -11,10 +11,11 @@ function getWord() {
     secretWord = word.val();
     letters = secretWord.split('');
     for (i = 0; i < letters.length; i++) {
-        $(".dashes span").text(letters.length);
+        
         answerArray[i] = " _ ";
-        $(".dashes div").append(answerArray[i]);
+        
     }
+    document.getElementById("p1").innerHTML = answerArray
     return secretWord, letters;
 }
 
@@ -121,9 +122,9 @@ indices = []
 
 
 function validLetter(letter, ev) {
-    if (answerArray.toString() == letters.toString()) {
-        console.log("parabéns, vc ganhou")
-    }
+    // if (answerArray.toString() == letters.toString()) {
+    //     console.log("parabéns, vc ganhou")
+    // }
     if (ev.keyCode >= 65 && ev.keyCode <= 90) {
         // console.log(ev.keyCode);
         // var wordLenght = secWordArr.length;
@@ -145,8 +146,10 @@ function validLetter(letter, ev) {
             }
             // $(".dashes div").append(answerArray[i]);
             lives = lives
-        }
-        else {
+            if (answerArray.toString() == letters.toString()) {
+              console.log("parabéns, vc ganhou")
+          }
+        }else {
             lives = lives - 1;
             console.log("vc errou, restam " + lives + " vidas");
         }
