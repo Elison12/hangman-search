@@ -77,6 +77,12 @@ indices = []
 
 function validLetter(letter, ev) {
 
+    if(guessArray.includes(letter)){
+
+        fireLetterAlert(letter)
+
+    }else{
+
     if (ev.keyCode >= 65 && ev.keyCode <= 90) {
 
         if (letters.includes(letter)) {
@@ -133,6 +139,8 @@ function updateImage(lives) {
         }, 5000);
     }
 }
+guessArray.push(letter)
+}
 
 function fireSweetAlert() {
     Swal.fire(
@@ -145,5 +153,12 @@ function fireErrorAlert() {
     Swal.fire(
         'Faleceu',
         'A palavra era: ' + secretWord
+    )
+}
+
+function fireLetterAlert(letter) {
+    Swal.fire(
+        'Ixee',
+        'Você ja usou a letra: ' + letter
     )
 }
