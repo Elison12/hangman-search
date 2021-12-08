@@ -1,19 +1,93 @@
 var word = $("#enterWord #word-field");
 var answerArray = [];
 secretWord = "";
-// secretWord = null;
 var guessArray = [];
 var wordLength = 0;
 var letters = ""
 
+class Node
+{
+    constructor(data)
+    {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree
+{
+    constructor()
+    {
+        this.root = null;
+    }
+ 
+    insert(data)
+{
+    var newNode = new Node(data);
+
+    if(this.root === null)
+        this.root = newNode;
+    else
+
+        this.insertNode(this.root, newNode);
+}
+
+insertNode(node, newNode)
+{
+
+    if(newNode.data < node.data)
+    {
+
+        if(node.left === null)
+            node.left = newNode;
+        else
+
+            this.insertNode(node.left, newNode);
+    }
+
+    else
+    {
+
+        if(node.right === null)
+            node.right = newNode;
+        else
+
+            this.insertNode(node.right,newNode);
+    }
+}
+
+search(node, data)
+{
+    if(node === null)
+        return null;
+
+    else if(data < node.data)
+        return this.search(node.left, data);
+
+    else if(data > node.data)
+        return this.search(node.right, data);
+
+    else
+        return node;
+}
+
+getRootNode()
+{
+    return this.root;
+}
+
+}
+
+var BST = new BinarySearchTree()
 
 function getWord() {
     secretWord = word.val();
     letters = secretWord.split('');
     for (i = 0; i < letters.length; i++) {
-        
+        $(".dashes span").text(letters.length);
         answerArray[i] = " _ ";
-        
+
     }
     document.getElementById("p1").innerHTML = answerArray
     return secretWord, letters;
@@ -22,19 +96,12 @@ function getWord() {
 $("#enterWord #submit-word").on("click", function (e) {
     e.preventDefault()
     Sword = getWord();
-    //chama função que valida a palavra
-    // secretWord = Sword;
+    Sword = secretWord;
     var teste = valid(Sword);
-
-    teste = true
 
     if (teste == false) {
         window.location.reload(true);
         alert("A palavra só pode conter letras !")
-    } else {
-        // playGame(Sword);
-        // validLetter(Sword);
-        // console.log(answerArray.length)
     }
     $("#enterWord #word-field").hide();
     $("#enterWord #submit-word").hide();
@@ -52,22 +119,16 @@ $(".alpha").on("click", function (e) {
 $(".alpha").children().on("click", letterTry);
 
 
-// window.addEventListener('keyup', digitadas);
-
-
 function valid(palavra) {
+    if (palavra.length == 0) {
+        alert('A palavra não pode ser nula')
+        window.location.reload(true);
+    }
     var wordTest = new Boolean(/^[a-zA-Z]*$/.test(palavra));
 
     if (wordTest == false) {
-        // Location.reload();
-        // window.location.reload(true);
-        // alert("A palavra só pode conter letras !")
         return false;
     } else {
-        //chamar script do jogo
-        // armazem(palavra);
-        // playGame(palavra);
-        // console.log(palavra)
         return true;
     }
 }
@@ -79,57 +140,27 @@ function letterTry() {
 }
 
 
-// function validLetter(ev) {
-//     const letra = ev.key;
-//     if (ev.keyCode >= 65 && ev.keyCode <= 90) {
-//         // console.log(ev.keyCode);
-//         var lives = 5;
-//         var wordLenght = secWordArr.length;
-//         var secretArr = new Array(wordLenght).fill("_")
-//         var armLet = new Array();
-
-//         if (secretWord.includes(letra)) {
-//             console.log(true)
-//         }        
-//         // return letra;
-//     }
-// console.log(secretWord);
-// }
-
-// function digitadas(ev) {
-//     const letra = ev.key;
-//     if (answerArray.length == 0) {
-//         console.log("ainda não")
-//         return letra;
-//     } else {
-//         console.log("agora sim")
-//         validLetter(answerArray)
-//     }
-//     return letra;
-// }
-
 function digitadas2(ev) {
     const l = ev.key;
     console.log(l)
-    // console.log(getWord());
-    // console.log(secretWord);
+
     validLetter(l, ev)
-    // return l;
 }
 
 lives = 5;
 indices = []
+var root = root
 
 
 function validLetter(letter, ev) {
-    // if (answerArray.toString() == letters.toString()) {
-    //     console.log("parabéns, vc ganhou")
-    // }
+
+    if(BST.search(root, letter.keyCode)){
+
+        fireLetterAlert(letter)
+
+    }else{
+
     if (ev.keyCode >= 65 && ev.keyCode <= 90) {
-        // console.log(ev.keyCode);
-        // var wordLenght = secWordArr.length;
-        // var secretArr = new Array(wordLenght).fill("_")
-        // var armLet = new Array();
 
         if (letters.includes(letter)) {
             // console.log(true)
@@ -144,22 +175,69 @@ function validLetter(letter, ev) {
                 answerArray.splice(posicao, 1, letter);
                 document.getElementById("p1").innerHTML = answerArray
             }
-            // $(".dashes div").append(answerArray[i]);
             lives = lives
             if (answerArray.toString() == letters.toString()) {
-              console.log("parabéns, vc ganhou")
-          }
-        }else {
+                console.log("parabéns, vc ganhou")
+                fireSweetAlert();
+
+                setTimeout(() => {
+                    window.location.reload(true);
+                }, 5000);
+            }
+        } else {
             lives = lives - 1;
             console.log("vc errou, restam " + lives + " vidas");
+            console.log(lives);
+            updateImage(lives);
         }
     }
-    // if (secretWord.includes(letter)) {
-    //     console.log(true)
-    // }
     if (lives == 0) {
         console.log("vc perdeu")
     }
     console.log(answerArray);
 }
-    // console.log(secretWord);
+
+function updateImage(lives) {
+    if (lives == 4) {
+        $("img").attr("src", "assets/img/life4.png");
+    } else if (lives == 3) {
+        $("img").attr("src", "assets/img/life3.png");
+    } else if (lives == 2) {
+        $("img").attr("src", "assets/img/life2.png");
+    } else if (lives == 1) {
+        $("img").attr("src", "assets/img/life1.png");
+    } else {
+        $("img").attr("src", "assets/img/lose.png");
+
+        setTimeout(() => {fireErrorAlert()}, 500);
+
+        setTimeout(() => {
+            window.location.reload(true);
+        }, 5000);
+    }
+}
+root = BST.getRootNode()
+BST.insertNode(root, letter.keyCode)
+return root
+}
+
+function fireSweetAlert() {
+    Swal.fire(
+        'Ufaa',
+        'Você se salvou com a palavra: ' + secretWord
+    )
+}
+
+function fireErrorAlert() {
+    Swal.fire(
+        'Faleceu',
+        'A palavra era: ' + secretWord
+    )
+}
+
+function fireLetterAlert(letter) {
+    Swal.fire(
+        'Ixee',
+        'Você ja usou a letra: ' + letter
+    )
+}
