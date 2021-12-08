@@ -1,0 +1,46 @@
+body {
+  background-color: #233d4d;
+  margin: 5% 25% 25% 25%;
+  position: fixed;
+}
+
+h1 {
+  text-align: center;
+  color:	#F8F8FF;
+  /* font: Impact; */
+  /* left: 500px; */
+  /* font-weight: bold; */
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+h2 {
+  font-family:Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: #F8F8FF;
+  font-variant: normal;
+  font-size: 10;
+}
+
+word-field{
+  margin: 5% 25% 25% 25%;
+  background-color: brown;
+}
+
+submit-word{
+  color: blue;
+}
+
+p {
+  font-size: 300.0;
+  color: #F8F8FF;
+  font-style: italic;
+}
+
+h4 {
+  font-size: 100%;
+  color: #F8F8FF;
+  font-style: normal;
+  font-weight: 5600;
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+}
