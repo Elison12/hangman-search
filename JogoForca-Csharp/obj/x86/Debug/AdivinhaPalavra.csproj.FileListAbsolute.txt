@@ -1,8 +1,0 @@
-C:\_C#\GuesstheWordGame\JogoForca\JogoForca\bin\Debug\GuessTheWord.exe.config
-C:\_C#\GuesstheWordGame\JogoForca\JogoForca\obj\x86\Debug\GuessTheWord.exe
-C:\_C#\GuesstheWordGame\JogoForca\JogoForca\obj\x86\Debug\GuessTheWord.pdb
-C:\_C#\GuesstheWordGame\JogoForca\JogoForca\bin\Debug\GuessTheWord.exe
-C:\_C#\GuesstheWordGame\JogoForca\JogoForca\bin\Debug\GuessTheWord.pdb
-C:\_C#\GuesstheWordGame\JogoForca\JogoForca\obj\x86\Debug\GuessTheWord.Form1.resources
-C:\_C#\GuesstheWordGame\JogoForca\JogoForca\obj\x86\Debug\GuessTheWord.Properties.Resources.resources
-C:\_C#\GuesstheWordGame\JogoForca\JogoForca\obj\x86\Debug\AdivinhaPalavra.csproj.GenerateResource.Cache
