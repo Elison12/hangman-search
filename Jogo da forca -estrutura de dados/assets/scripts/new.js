@@ -4,6 +4,7 @@ secretWord = "";
 var wordLength = 0;
 var letters = ""
 
+
 class Node {
     constructor(value) {
         this.value = value
@@ -13,6 +14,7 @@ class Node {
     }
 
 }
+
 class BinarySearchTree {
 
     constructor() {
@@ -145,7 +147,12 @@ function validLetter(letter, ev) {
 
         fireLetterAlert(letter)
 
-    } else {
+    } 
+    else if(valid(ev.key) == false) {
+        onlyletterAlert()
+    }
+    
+    else {
 
         if (ev.keyCode >= 65 && ev.keyCode <= 90) {
 
@@ -224,5 +231,11 @@ function fireLetterAlert(letter) {
     Swal.fire(
         'Ixee',
         'Você ja usou a letra: ' + letter
+    )
+}
+
+function onlyletterAlert() {
+    Swal.fire(
+        'Só vale letras do alfabeto !!'
     )
 }
